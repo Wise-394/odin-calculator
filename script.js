@@ -8,6 +8,7 @@ let numString = ""
 
 //a boolean variable to ensure only 1 operation will be in numstring
 let isOperatorSelected = ""
+let canAddDot = true
 
 function add(a, b) {
     updateAnswer(a + b)
@@ -23,6 +24,12 @@ function multiply(a, b) {
 
 function divide(a, b) {
     updateAnswer(a / b)
+}
+
+function handleDivision(a,b){
+    if(b === 0){
+        alert("ERROR: CANT DIVIDE BY 0")
+    }
 }
 
 function operator(a, b, operation) {
@@ -44,12 +51,10 @@ function operator(a, b, operation) {
 
 //the value of button if its a number or operator
 function handleClickButton(value) {
-    const OPERATORS = ["+", "-", "*", "/"];
-    const isSpecial = ["C", "=", ...OPERATORS].includes(value);
-
+    const OPERATORS = ["+", "-", "*", "/",]
+    const isSpecial = ["C", "=", ".", ...OPERATORS].includes(value)
     if (!isSpecial) {
-        console.log(true)
-        appendDigit(value);
+        appendDigit(value)
         return;
     }
     //if operator is clicked 
@@ -58,8 +63,10 @@ function handleClickButton(value) {
         clearAll();
     } else if (value === "=") {
         solveEquation();
+    } else if (value === ".") {
+        onDecimal()
     } else if (OPERATORS.includes(value)) {
-        onOperator(value);
+        onOperator(value)
     }
 
     updateDisplay();
@@ -67,25 +74,33 @@ function handleClickButton(value) {
 
 
 function appendDigit(digit) {
-    numString += digit;
-    numberLabel.textContent = numString;
+    numString += digit
+    numberLabel.textContent = numString
 }
 
 function clearAll() {
     numString = "";
     AnswerLabel.textContent = ""
-    isOperatorSelected = false;
+    isOperatorSelected = false
+    canAddDot = true
 }
+function onDecimal() {
+    if (canAddDot === false) return
+    if(numberLabel.textContent === "") return
+    canAddDot = false
+    numString += "."
 
+}
 function onOperator(op) {
     if (isOperatorSelected) return;
     if (numberLabel.textContent === "") return
-    isOperatorSelected = true;
-    numString += op;
+    isOperatorSelected = true
+    canAddDot = true
+    numString += op
 }
 
 function updateDisplay() {
-    numberLabel.textContent = numString;
+    numberLabel.textContent = numString
 }
 function updateAnswer(answer) {
     AnswerLabel.textContent = answer
@@ -110,7 +125,8 @@ function solveEquation() {
             divide(+num1, +num2)
             break
     }
-
+    isOperatorSelected = false
+    canAddDot = true
 }
 
 
@@ -122,5 +138,5 @@ function main() {
 }
 main()
 
-//TODO add a decimal 
+//TODO handle division
 //TODO fix html layout
