@@ -10,7 +10,7 @@ let numString = ""
 let isOperatorSelected = ""
 
 function add(a, b) {
-    updateAnswer(a+b)
+    updateAnswer(a + b)
 }
 
 function subtract(a, b) {
@@ -44,48 +44,50 @@ function operator(a, b, operation) {
 
 //the value of button if its a number or operator
 function handleClickButton(value) {
-  const OPERATORS = ["+", "-", "*", "/"];
-  const isSpecial = ["C", "=", ...OPERATORS].includes(value);
+    const OPERATORS = ["+", "-", "*", "/"];
+    const isSpecial = ["C", "=", ...OPERATORS].includes(value);
 
-  if (!isSpecial) {
-    appendDigit(value);
-    return;
-  }
+    if (!isSpecial) {
+        console.log(true)
+        appendDigit(value);
+        return;
+    }
+    //if operator is clicked 
 
-  if (value === "C") {
-    clearAll();
-  } else if (value === "=") {
-    solveEquation();
-  } else if (OPERATORS.includes(value)) {
-    onOperator(value);
-  }
+    if (value === "C") {
+        clearAll();
+    } else if (value === "=") {
+        solveEquation();
+    } else if (OPERATORS.includes(value)) {
+        onOperator(value);
+    }
 
-  updateDisplay();
+    updateDisplay();
 }
 
 
 function appendDigit(digit) {
-  numString += digit;
-  numberLabel.textContent = numString;
-  isOperatorSelected = false;
+    numString += digit;
+    numberLabel.textContent = numString;
 }
 
 function clearAll() {
-  numString = "";
-  AnswerLabel.textContent = ""
-  isOperatorSelected = false;
+    numString = "";
+    AnswerLabel.textContent = ""
+    isOperatorSelected = false;
 }
 
 function onOperator(op) {
-  if (isOperatorSelected) return; 
-  isOperatorSelected = true;
-  numString += op;
+    if (isOperatorSelected) return;
+    if (numberLabel.textContent === "") return
+    isOperatorSelected = true;
+    numString += op;
 }
-    
+
 function updateDisplay() {
-  numberLabel.textContent = numString;
+    numberLabel.textContent = numString;
 }
-function updateAnswer(answer){
+function updateAnswer(answer) {
     AnswerLabel.textContent = answer
 }
 
