@@ -121,3 +121,6 @@ function main() {
     )
 }
 main()
+
+//TODO add a decimal 
+//TODO fix html layout
