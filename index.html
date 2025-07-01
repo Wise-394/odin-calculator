@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
 </head>
 
 <body>
@@ -14,36 +14,34 @@
     <div class="container">
         <div id="number-container">
             <div id="answer-container">
-                <p>200</p>
+                <p id = "answer">200</p>
             </div>
             <div id="label-container">
-                <p>100</p>
-                <p>+</p>
-                <p>100</p>
+                <p id = "number-label"></p>
 
             </div>
         </div>
         <div id="button-container">
             <div id="number-button-container">
-                <button class="cal-button" id="9">9</button>
-                <button class="cal-button" id="8">8</button>
-                <button class="cal-button" id="7">7</button>
-                <button class="cal-button" id="6">6</button>
-                <button class="cal-button" id="5">5</button>
-                <button class="cal-button" id="4">4</button>
-                <button class="cal-button" id="3">3</button>
-                <button class="cal-button" id="2">2</button>
-                <button class="cal-button" id="1">1</button>
-                <button class="cal-button" id="equal">=</button>
-                <button class="cal-button" id="0">0</button>
-                <button class="cal-button" id="clear">c</button>
+                <button class="cal-button">9</button>
+                <button class="cal-button">8</button>
+                <button class="cal-button">7</button>
+                <button class="cal-button">6</button>
+                <button class="cal-button">5</button>
+                <button class="cal-button">4</button>
+                <button class="cal-button">3</button>
+                <button class="cal-button">2</button>
+                <button class="cal-button">1</button>
+                <button class="cal-button">=</button>
+                <button class="cal-button">0</button>
+                <button class="cal-button">C</button>
 
             </div>
             <div id="operation-button-container">
-                <button class="cal-button" id="add">+</button>
-                <button class="cal-button" id="subtract">-</button>
-                <button class="cal-button" id="multiply">*</button>
-                <button class="cal-button" id="divide">/</button>
+                <button class="cal-button">+</button>
+                <button class="cal-button">-</button>
+                <button class="cal-button">*</button>
+                <button class="cal-button">/</button>
             </div>
         </div>
     </div>
