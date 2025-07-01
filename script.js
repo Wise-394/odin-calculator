@@ -6,20 +6,23 @@ const numberLabel = document.querySelector("#number-label")
 //JS VARIABLES
 let numString = ""
 
+//a boolean variable to ensure only 1 operation will be in numstring
+let isOperatorSelected = ""
+
 function add(a, b) {
-    console.log(a + b)
+    updateAnswer(a+b)
 }
 
 function subtract(a, b) {
-    console.log(a - b)
+    updateAnswer(a - b)
 }
 
 function multiply(a, b) {
-    console.log(a * b)
+    updateAnswer(a * b)
 }
 
 function divide(a, b) {
-    console.log(a / b)
+    updateAnswer(a / b)
 }
 
 function operator(a, b, operation) {
@@ -41,19 +44,49 @@ function operator(a, b, operation) {
 
 //the value of button if its a number or operator
 function handleClickButton(value) {
-    const specialOperation = ["C", "=",]
+  const OPERATORS = ["+", "-", "*", "/"];
+  const isSpecial = ["C", "=", ...OPERATORS].includes(value);
 
-    if (!specialOperation.includes(value)) {
-        numString += value
-        numberLabel.textContent = numString
-        return
-    }
-    if (value === "C") {
-        numString = ""
-    } else if (value === "=") {
-        solveEquation()
-    }
-    numberLabel.textContent = numString
+  if (!isSpecial) {
+    appendDigit(value);
+    return;
+  }
+
+  if (value === "C") {
+    clearAll();
+  } else if (value === "=") {
+    solveEquation();
+  } else if (OPERATORS.includes(value)) {
+    onOperator(value);
+  }
+
+  updateDisplay();
+}
+
+
+function appendDigit(digit) {
+  numString += digit;
+  numberLabel.textContent = numString;
+  isOperatorSelected = false;
+}
+
+function clearAll() {
+  numString = "";
+  AnswerLabel.textContent = ""
+  isOperatorSelected = false;
+}
+
+function onOperator(op) {
+  if (isOperatorSelected) return; 
+  isOperatorSelected = true;
+  numString += op;
+}
+    
+function updateDisplay() {
+  numberLabel.textContent = numString;
+}
+function updateAnswer(answer){
+    AnswerLabel.textContent = answer
 }
 
 function solveEquation() {
@@ -61,18 +94,18 @@ function solveEquation() {
     const num1 = numArr[0]
     const operation = numArr[1]
     const num2 = numArr[2]
-    switch(operation){
+    switch (operation) {
         case "+":
-            add(+num1,+num2)
+            add(+num1, +num2)
             break
         case "-":
-            subtract(+num1,+num2)
+            subtract(+num1, +num2)
             break
         case "*":
-            multiply(+num1,+num2)
+            multiply(+num1, +num2)
             break
         case "/":
-            divide(+num1,+num2)
+            divide(+num1, +num2)
             break
     }
 
