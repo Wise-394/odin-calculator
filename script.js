@@ -88,6 +88,12 @@ function clearAll() {
     canAddDot = true
 }
 function clearEntry() {
+    const OPERATORS = ["+", "-", "*", "/"]
+    if(OPERATORS.includes(numString[numString.length - 1])){
+        isOperatorSelected = false
+        canAddDot = true
+        console.log("cleared operator")
+    }
     numString = numString.slice(0, -1); 
     console.log(numString)
     updateDisplay()
