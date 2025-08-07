@@ -23,14 +23,14 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    console.log(a,b)
+    if (b === 0) {
+        alert("ERROR: CANT DIVIDE BY 0")
+        return
+    }
     updateAnswer(a / b)
 }
 
-function handleDivision(a,b){
-    if(b === 0){
-        alert("ERROR: CANT DIVIDE BY 0")
-    }
-}
 
 function operator(a, b, operation) {
     switch (operation) {
@@ -52,7 +52,7 @@ function operator(a, b, operation) {
 //the value of button if its a number or operator
 function handleClickButton(value) {
     const OPERATORS = ["+", "-", "*", "/",]
-    const isSpecial = ["C", "=", ".", ...OPERATORS].includes(value)
+    const isSpecial = ["C","CE", "=", ".", ...OPERATORS].includes(value)
     if (!isSpecial) {
         appendDigit(value)
         return;
@@ -60,9 +60,12 @@ function handleClickButton(value) {
     //if operator is clicked 
 
     if (value === "C") {
-        clearAll();
-    } else if (value === "=") {
-        solveEquation();
+        clearAll()
+    } else if (value === "CE") {
+        clearEntry()
+    }
+     else if (value === "=") {
+        solveEquation()
     } else if (value === ".") {
         onDecimal()
     } else if (OPERATORS.includes(value)) {
@@ -84,9 +87,14 @@ function clearAll() {
     isOperatorSelected = false
     canAddDot = true
 }
+function clearEntry() {
+    numString = numString.slice(0, -1); 
+    console.log(numString)
+    updateDisplay()
+}
 function onDecimal() {
     if (canAddDot === false) return
-    if(numberLabel.textContent === "") return
+    if (numberLabel.textContent === "") return
     canAddDot = false
     numString += "."
 
@@ -127,6 +135,8 @@ function solveEquation() {
     }
     isOperatorSelected = false
     canAddDot = true
+    numString = ""
+    updateDisplay()
 }
 
 
@@ -138,5 +148,6 @@ function main() {
 }
 main()
 
-//TODO handle division
+//TODO improve clear entry logic
+//TODO commit
 //TODO fix html layout
