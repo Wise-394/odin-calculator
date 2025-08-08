@@ -9,6 +9,7 @@ let numString = ""
 //a boolean variable to ensure only 1 operation will be in numstring
 let isOperatorSelected = ""
 let canAddDot = true
+let canClickAns = true
 
 function add(a, b) {
     updateAnswer(a + b)
@@ -52,7 +53,7 @@ function operator(a, b, operation) {
 //the value of button if its a number or operator
 function handleClickButton(value) {
     const OPERATORS = ["+", "-", "*", "/",]
-    const isSpecial = ["C","CE", "=", ".", ...OPERATORS].includes(value)
+    const isSpecial = ["C","CE", "=", ".", "ans" , ...OPERATORS].includes(value)
     if (!isSpecial) {
         appendDigit(value)
         return;
@@ -70,12 +71,19 @@ function handleClickButton(value) {
         onDecimal()
     } else if (OPERATORS.includes(value)) {
         onOperator(value)
+    } else if (value === "ans"){
+        onAnswer()
     }
 
     updateDisplay();
 }
 
-
+function onAnswer(){
+    if(canClickAns){
+    appendDigit(AnswerLabel.textContent)
+    canClickAns = false
+    }
+}
 function appendDigit(digit) {
     numString += digit
     numberLabel.textContent = numString
@@ -86,12 +94,14 @@ function clearAll() {
     AnswerLabel.textContent = ""
     isOperatorSelected = false
     canAddDot = true
+    canClickAns = true
 }
 function clearEntry() {
-    const OPERATORS = ["+", "-", "*", "/"]
+    const OPERATORS = ["+", "-", "*", "/", "."]
     if(OPERATORS.includes(numString[numString.length - 1])){
         isOperatorSelected = false
         canAddDot = true
+        canClickAns = true
         console.log("cleared operator")
     }
     numString = numString.slice(0, -1); 
@@ -110,6 +120,7 @@ function onOperator(op) {
     if (numberLabel.textContent === "") return
     isOperatorSelected = true
     canAddDot = true
+    canClickAns = true
     numString += op
 }
 

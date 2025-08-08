@@ -10,17 +10,42 @@ body {
 p {
     margin: 0;
 }
-
-div {
-    outline: 1px solid black;
+p, button {
+    font-size: 20px;
 }
+#answer {
+    font-size: 30px;
+}
+
+/* div { 
+    outline: 1px solid black;
+} */
+
 
 .container {
     display: flex;
     flex-direction: column;
     height: 500px;
-    width: 400px;
+    width: 350px;
+    border-radius: 10px;
+    padding: 5px;
+    border: 2px black solid;
+    background-color: #F5F5F5;
 }
+
+button {
+    border: 0px;
+    margin: 1.5px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+}
+.special {
+    background-color: #AEC6CF;
+}
+.equal{
+    background-color: #6DA2C2;
+}
+
 
 #number-container {
     flex: 3;
@@ -68,6 +93,6 @@ div {
 }
 
 .cal-button {
-    flex: 1 0 80px;
+    flex: 1 0 80px; 
     height: 80px;
 }
